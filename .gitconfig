@@ -1,0 +1,24 @@
+[user]
+  email = minhnd.it@gmail.com
+  name = soyelmnd
+
+[alias]
+  a = add
+  amend = commit --amend -CHEAD
+  c = commit
+  co = checkout
+  d = diff
+  f = fetch
+  l = log --oneline
+  p = push
+  s = status -sb -unormal
+  v = log --graph --all --format=\"%C(auto)%h%C(reset) %C(auto)%d%C(reset) %s %C(yellow)- %cn, %cd%C(reset)\" --date=relative
+
+[core]
+  editor = vim
+
+[credential]
+  helper = cache --timeout=3600
+
+[diff]
+  tool = vimdiff
