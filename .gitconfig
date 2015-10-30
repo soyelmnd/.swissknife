@@ -5,7 +5,7 @@
 [alias]
   a = add
   amend = commit --amend -CHEAD
-  c = commit
+  c = commit -m
   co = checkout
   d = diff
   f = fetch

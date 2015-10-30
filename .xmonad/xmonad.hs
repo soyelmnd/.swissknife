@@ -13,11 +13,12 @@ import XMonad.Actions.UpdatePointer
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers ( isFullscreen, isDialog, doFullFloat, doCenterFloat )
+import XMonad.Layout.Grid
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.NoBorders ( smartBorders )
-import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run ( hPutStrLn, spawnPipe )
-import XMonad.Util.EZConfig ( additionalKeys, additionalMouseBindings )
+import XMonad.Util.EZConfig ( additionalKeysP, additionalMouseBindings )
 
 
 myModMask = mod4Mask
@@ -32,11 +33,12 @@ myAppEntertainment = []
 myAppIgnored = [ "trayer" ]
 
 -- theme and layout config
-myActiveColor = "#f88017"
+myPrimaryColor = "#f88017"
+myAccentColor = "#333333"
 myLayout = avoidStruts $ smartBorders $
-  Tall 1 0.03 0.618 |||
+  ResizableTall 1 0.03 0.618 [] |||
   Full |||
-  ThreeColMid 1 0.03 0.5
+  Grid
 
 
 main = do
@@ -51,7 +53,7 @@ main = do
     , layoutHook = myLayout
     , logHook = dynamicLogWithPP xmobarPP
         { ppOutput = hPutStrLn xmproc
-        , ppTitle = xmobarColor myActiveColor "" . shorten 50
+        , ppTitle = xmobarColor myPrimaryColor "" . shorten 50
         }
         >> updatePointer (Relative 0.5 0.5)
 
@@ -59,24 +61,29 @@ main = do
     , terminal = myTerminal
 
     , borderWidth = 1
-    , normalBorderColor = "#000000"
-    , focusedBorderColor = myActiveColor
+    , normalBorderColor = myAccentColor
+    , focusedBorderColor = myPrimaryColor
 
     , focusFollowsMouse = False
     }
 
-    `additionalKeys`
+    `additionalKeysP`
     [
     -- grid select with `super + a`
-      ((mod4Mask, xK_a), goToSelected defaultGSConfig)
+      ("M-a", goToSelected defaultGSConfig)
 
     -- quick `full` layout with `super + f11`
-    , ((mod4Mask, xK_F11), sendMessage $ JumpToLayout "Full")
+    , ("M-<F11>", sendMessage $ JumpToLayout "Full")
+
+    -- `ResizableTall` sizing with
+    --   `super + shift + h` and `super + shift + l`
+    , ("M-S-h", sendMessage MirrorExpand)
+    , ("M-S-l", sendMessage MirrorShrink)
 
     -- volume control, via `pactl`
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume 0 +1%")
-    , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume 0 -1%")
-    , ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle" )
+    , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +1%")
+    , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -1%")
+    , ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle" )
     ]
 
     `additionalMouseBindings`
