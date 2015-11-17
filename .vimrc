@@ -10,7 +10,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ap/vim-css-color'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'groenewege/vim-less'
@@ -22,7 +21,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'tommcdo/vim-exchange'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine'
@@ -99,7 +97,6 @@ let g:lightline = {
 \ 'active': {
 \   'left': [
 \     [ 'mode', 'paste' ],
-\     [ 'fugitive' ],
 \     [ 'readonly', 'filename', 'modified' ]
 \   ],
 \   'right': [
@@ -109,7 +106,6 @@ let g:lightline = {
 \   ]
 \ },
 \ 'component_function': {
-\   'fugitive': 'LightlineFugitive',
 \   'readonly': 'LightlineReadonly',
 \   'modified': 'LightlineModified',
 \   'filename': 'LightlineFilename'
@@ -138,14 +134,6 @@ function! LightlineReadonly()
   else
     return ""
   endif
-endfunction
-
-function! LightlineFugitive()
-  if exists("*fugitive#head")
-    let _ = fugitive#head()
-    return strlen(_) ? ' '._ : ''
-  endif
-  return ''
 endfunction
 
 function! LightlineFilename()
