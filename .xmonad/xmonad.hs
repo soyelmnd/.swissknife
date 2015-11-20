@@ -2,7 +2,9 @@
 --   xmonad
 --   xmonad-contrib
 --   xmobar
+--   dmenu
 --   trayer
+--   feh
 -- @see
 --   http://xmonad.org/xmonad-docs/xmonad/src/XMonad-Config.html
 import Graphics.X11.ExtraTypes.XF86
@@ -42,9 +44,10 @@ myLayout = avoidStruts $ smartBorders $
 
 
 main = do
-  -- spawn a handy xmobar with a trayer
+  -- spawn handy stuffs
   xmproc <- spawnPipe "$HOME/.xmonad/trayer-factory"
   xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
+  xmproc <- spawnPipe "$HOME/.xmonad/feh-factory"
 
   xmonad $ defaultConfig
     {

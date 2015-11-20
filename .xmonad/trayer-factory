@@ -1,3 +1,4 @@
+#!/bin/bash
 # As this call trayer-factory
 #   there should be only one instance
 #   of trayer running at a time

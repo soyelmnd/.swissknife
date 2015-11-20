@@ -1,0 +1,4 @@
+#!/bin/bash
+killall feh;
+cd $HOME/.wallpaper;
+ls | sort -R | tail -1 | feh --bg-scale -f - &
