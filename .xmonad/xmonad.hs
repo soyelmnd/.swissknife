@@ -45,9 +45,9 @@ myLayout = avoidStruts $ smartBorders $
 
 main = do
   -- spawn handy stuffs
+  xmproc <- spawnPipe "$HOME/.xmonad/feh-factory"
   xmproc <- spawnPipe "$HOME/.xmonad/trayer-factory"
   xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
-  xmproc <- spawnPipe "$HOME/.xmonad/feh-factory"
 
   xmonad $ defaultConfig
     {

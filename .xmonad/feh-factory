@@ -1,4 +1,5 @@
 #!/bin/bash
 killall feh;
-cd $HOME/.wallpaper;
-ls | sort -R | tail -1 | feh --bg-scale -f - &
+
+sleep 1; # wait for xmobar to run first 
+cd $HOME/.wallpaper && ls | sort -R | tail -1 | feh --bg-scale -f - &
