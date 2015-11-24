@@ -47,5 +47,5 @@ if grep -Fxq ".bash_kit" $HOME/.bash_profile; then
   echo ".bash_kit already included"
 else
   ln -sf $DIR/.bash_kit $HOME/;
-  echo source ${HOME}/.bash_kit >> $HOME/.bash_profile
+  echo source \$HOME/.bash_kit >> $HOME/.bash_profile
 fi
