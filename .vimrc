@@ -10,6 +10,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ap/vim-css-color'
+Plugin 'digitaltoad/vim-jade'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'groenewege/vim-less'
@@ -29,6 +30,8 @@ Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
 syntax on
+
+set lazyredraw
 
 " theme and color
 set t_Co=256
@@ -61,6 +64,25 @@ set ignorecase
 " hidden chars
 set listchars=tab:>-,trail:.
 set list
+
+" neovim
+if has('nvim')
+  " terminal
+  tnoremap <Esc> <C-\><C-n>
+
+  tnoremap <C-w>h <C-\><C-n><C-w>h
+  tnoremap <C-w>j <C-\><C-n><C-w>j
+  tnoremap <C-w>k <C-\><C-n><C-w>k
+  tnoremap <C-w>l <C-\><C-n><C-w>l
+
+  tnoremap <C-w>H <C-\><C-n><C-w>H
+  tnoremap <C-w>J <C-\><C-n><C-w>J
+  tnoremap <C-w>K <C-\><C-n><C-w>K
+  tnoremap <C-w>L <C-\><C-n><C-w>L
+
+  autocmd BufWinEnter,WinEnter term://* startinsert
+  autocmd BufLeave term://* stopinsert
+endif
 
 
 "--------------------------------- PLUGIN -------------------------------------"

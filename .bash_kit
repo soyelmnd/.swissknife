@@ -1,0 +1,27 @@
+# macos terminal config
+export PS1="\033[38;5;87m\w\033[m \$ "
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# aliases
+alias ..="cd .."
+alias ...="cd ../../../"
+alias ls="ls -GhF"
+alias ll="ls -l"
+alias mkdir="mkdir -pv"
+alias rm="rm -rf"
+alias tmux="tmux -2"
+
+# brew
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# python & virtualenv
+export PATH=/usr/local/share/python:$PATH
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# # tmux, auto launch the instance
+# # @deprecated, switching to terminal in neovim
+# if [[ ! $TERM =~ screen  ]]; then
+#     exec tmux new-session -A -s world
+# fi
