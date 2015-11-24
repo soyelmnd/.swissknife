@@ -1,4 +1,5 @@
 ## Quick start
+Just as simple as
 ```'sh'
-./install.sh
+git clone https://github.com/soyelmnd/.swissknife.git $HOME/.swissknife && $HOME/install.sh
 ```
