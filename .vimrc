@@ -13,6 +13,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'floobits/floobits-neovim'
 Plugin 'groenewege/vim-less'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'
@@ -28,9 +29,10 @@ Plugin 'tpope/vim-repeat'
 Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
+
+" basic
 filetype plugin indent on
 syntax on
-
 set lazyredraw
 
 " theme and color
@@ -48,10 +50,14 @@ highlight ColorColumn ctermbg=7
 set backspace=indent,eol,start
 set mouse=
 
+" window and pane
+set splitbelow
+set splitright
+
 " tab stops
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 " searching
@@ -64,6 +70,22 @@ set ignorecase
 " hidden chars
 set listchars=tab:>-,trail:.
 set list
+
+" large file
+let g:LargeFile = 10 * 1024 * 1024
+augroup LargeFile
+  autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+  augroup END
+
+  function LargeFile()
+    set eventignore+=FileType " disable filetype related features
+    noswapfile
+    setlocal bufhidden=unload " save memory when other file is viewed
+    setlocal buftype=nowrite
+    setlocal undolevels=1
+    autocmd VimEnter *  echo "Entering large-file-mode as file is larger than " . (g:LargeFile / 1024 / 1024) . "MB"
+endfunction
+
 
 " neovim
 if has('nvim')
