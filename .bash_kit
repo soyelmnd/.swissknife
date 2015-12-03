@@ -20,6 +20,9 @@ export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
 alias virtualenvwrapper="source /usr/local/bin/virtualenvwrapper.sh"
 
+# vim
+set -o vi
+
 # # tmux, auto launch the instance
 # # @deprecated, switching to terminal in neovim
 # if [[ ! $TERM =~ screen  ]]; then
