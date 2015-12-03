@@ -18,7 +18,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # python & virtualenv
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+alias virtualenvwrapper="source /usr/local/bin/virtualenvwrapper.sh"
 
 # # tmux, auto launch the instance
 # # @deprecated, switching to terminal in neovim
