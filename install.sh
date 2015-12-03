@@ -49,3 +49,4 @@ else
   ln -sf $DIR/.bash_kit $HOME/;
   echo source \$HOME/.bash_kit >> $HOME/.bash_profile
 fi
+touch ~/.hushlogin
