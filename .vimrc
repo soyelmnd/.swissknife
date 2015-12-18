@@ -61,6 +61,9 @@ set pastetoggle=<leader>p
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
+nnoremap ^ g^
+nnoremap $ g$
+nnoremap 0 g0
 
 if bufwinnr(1)
   " pane resize vertically = -
