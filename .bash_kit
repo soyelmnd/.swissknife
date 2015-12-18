@@ -23,6 +23,11 @@ alias venv=". /usr/local/bin/virtualenvwrapper.sh && workon \"$1\""
 # vim binding
 set -o vi
 
+# history config
+export HISTTIMEFORMAT="[%F %T] "
+export HISTFILESIZE=
+export HISTSIZE=
+
 # # tmux, auto launch the instance
 # # @deprecated, switching to terminal in neovim
 # if [[ ! $TERM =~ screen  ]]; then
