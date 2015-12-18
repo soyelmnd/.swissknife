@@ -17,6 +17,7 @@ Plugin 'floobits/floobits-neovim'
 Plugin 'groenewege/vim-less'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
@@ -152,6 +153,14 @@ vmap X <Plug>(Exchange)
 nmap cxc <Plug>(ExchangeClear)
 nmap cxx <Plug>(ExchangeLine)
 
+
+" Ctrlp
+" @see https://github.com/ctrlpvim/ctrlp.vim
+let g:ctrlp_max_files = 0
+let g:ctrlp_working_path_mode = 0
+set wildignore+=*/vendors/**
+set wildignore+=*/node_modules/**
+set wildignore+=*/bower_components/**
 
 " Gundo
 " @see https://github.com/sjl/gundo.vim
