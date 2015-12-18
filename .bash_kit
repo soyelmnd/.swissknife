@@ -1,5 +1,5 @@
 # macos terminal config
-export PS1="\033[38;5;87m\w\033[m \$ "
+export PS1="\[\033[38;5;87m\]\w\[\033[m\] \$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
@@ -18,9 +18,9 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # python & virtualenv
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
-alias virtualenvwrapper="source /usr/local/bin/virtualenvwrapper.sh"
+alias venv=". /usr/local/bin/virtualenvwrapper.sh && workon \"$1\""
 
-# vim
+# vim binding
 set -o vi
 
 # # tmux, auto launch the instance
