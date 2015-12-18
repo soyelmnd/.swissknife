@@ -24,8 +24,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
@@ -43,6 +43,7 @@ colorscheme koehler
 " numbering and rulers
 set relativenumber
 set number
+set cursorline
 set colorcolumn=80
 highlight ColorColumn ctermbg=7
 
@@ -50,9 +51,24 @@ highlight ColorColumn ctermbg=7
 set backspace=indent,eol,start
 set mouse=
 
-" window and pane
+" new window or pane should be appended to bottom right
 set splitbelow
 set splitright
+
+" handy mapping
+set pastetoggle=<leader>p
+nnoremap ; :
+nnoremap j gj
+nnoremap k gk
+
+if bufwinnr(1)
+  " pane resize vertically = -
+  " and horizontally + _
+  map = 5<c-w>>
+  map - 5<c-w><
+  map + 5<c-w>+
+  map _ 5<c-w>-
+endif
 
 " tab stops
 set tabstop=2
@@ -66,25 +82,37 @@ set hlsearch
 set modifiable
 set smartcase
 set ignorecase
+map <space> :noh<cr>
 
-" hidden chars
+" show hidden chars
 set listchars=tab:>-,trail:.
 set list
 
-" large file
+" text format
+set wrap
+set showmatch
+
+" disable swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" large file handle
 let g:LargeFile = 10 * 1024 * 1024
 augroup LargeFile
   autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-  augroup END
-
-  function LargeFile()
-    set eventignore+=FileType " disable filetype related features
-    noswapfile
-    setlocal bufhidden=unload " save memory when other file is viewed
-    setlocal buftype=nowrite
-    setlocal undolevels=1
-    autocmd VimEnter *  echo "Entering large-file-mode as file is larger than " . (g:LargeFile / 1024 / 1024) . "MB"
+augroup END
+function! LargeFile()
+  set eventignore+=FileType " disable filetype related features
+  noswapfile
+  setlocal bufhidden=unload " save memory when other file is viewed
+  setlocal buftype=nowrite
+  setlocal undolevels=1
+  autocmd VimEnter *  echo "Entering large-file-mode as file is larger than " . (g:LargeFile / 1024 / 1024) . "MB"
 endfunction
+
+" sudo switch with w!!
+cmap w!! w !sudo tee % >/dev/null
 
 
 " neovim
@@ -111,11 +139,13 @@ endif
 
 
 " Emmet
+" @see https://github.com/mattn/emmet-vim
 "   tab to expand
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 
 " Exchange
+" @see https://github.com/tommcdo/vim-exchange
 let g:exchange_no_mappings=1
 nmap cx <Plug>(Exchange)
 vmap X <Plug>(Exchange)
@@ -124,18 +154,21 @@ nmap cxx <Plug>(ExchangeLine)
 
 
 " Gundo
+" @see https://github.com/sjl/gundo.vim
 let g:gundo_right=1
 let g:gundo_close_on_revert = 1
 let g:gundo_preview_height=25
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <leader>u :GundoToggle<cr>
 
 
 " Indent line
+" @see https://github.com/Yggdroot/indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
 
 
 " Light line
+" @see https://github.com/itchyny/lightline.vim
 set laststatus=2
 let g:lightline = {
 \ 'colorscheme': 'wombat',
@@ -189,6 +222,7 @@ endfunction
 
 
 " Nerdtree
+" @see https://github.com/scrooloose/nerdtree
 "   Ctrl + N to toggle
 "   and show-on folder open
 autocmd StdinReadPre * let s:std_in=1
@@ -196,7 +230,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
 
-"--------------------------------- PLUGIN -------------------------------------"
+"--------------------------------- EXTRA -------------------------------------"
 
 
 " Load local vimrc, if any
