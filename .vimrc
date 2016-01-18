@@ -39,7 +39,7 @@ set lazyredraw
 " theme and color
 set t_Co=256
 set background=dark
-colorscheme koehler
+colorscheme elflord
 
 " numbering and rulers
 set relativenumber
@@ -59,6 +59,7 @@ set splitright
 " handy mapping
 set pastetoggle=<leader>p
 nnoremap ; :
+vnoremap ; :
 nnoremap j gj
 nnoremap k gk
 nnoremap ^ g^
@@ -74,11 +75,13 @@ if bufwinnr(1)
   map _ 5<c-w>-
 endif
 
-" tab stops
+" tab stops and modeline
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set modeline
+set modelines=5
 
 " searching
 set showcmd
