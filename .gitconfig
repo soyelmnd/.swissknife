@@ -5,14 +5,17 @@
 [alias]
   a = add
   amend = commit --amend -CHEAD
+  b = branch
   c = commit -m
   co = checkout
   d = diff
-  f = fetch
+  f = fetch -p
   l = log --oneline
+  m = merge
   p = push
+  rb = rebase
   s = status -sb -unormal
-  v = log --graph --all --format=\"%C(auto)%h%C(reset) %C(auto)%d%C(reset) %s %C(yellow)- %cn, %cd%C(reset)\" --date=relative
+  v = log --graph --all --format=\"%C(auto)%h%C(reset) %C(auto)%d%C(reset) %s %C(yellow)- %an, %ad%C(reset)\" --date=relative
 
 [core]
   editor = vim
