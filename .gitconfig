@@ -8,6 +8,7 @@
   b = branch
   c = commit -m
   co = checkout
+  cp = cherry-pick
   d = diff
   f = fetch -p
   l = log --oneline
@@ -25,3 +26,11 @@
 
 [diff]
   tool = vimdiff
+
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+
+[push]
+  default = nothing

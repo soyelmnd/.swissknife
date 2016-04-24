@@ -1,6 +1,11 @@
 " Dependencies
 "   https://github.com/VundleVim/Vundle.vim
 "   https://github.com/powerline/fonts
+
+
+"-------------------------------- GENERAL -------------------------------------"
+
+
 set nocompatible
 filetype off
 
@@ -10,24 +15,25 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ap/vim-css-color'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'floobits/floobits-neovim'
+Plugin 'godlygeek/tabular'
 Plugin 'groenewege/vim-less'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
-Plugin 'sjl/gundo.vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine'
+
 
 call vundle#end()
 
@@ -41,12 +47,18 @@ set t_Co=256
 set background=dark
 colorscheme elflord
 
-" numbering and rulers
+" numbering, rulers and highlight
 set relativenumber
 set number
 set cursorline
-set colorcolumn=80
+set cursorcolumn
+highlight CursorColumn ctermbg=8
 highlight ColorColumn ctermbg=7
+highlight Visual ctermbg=255 ctermfg=16
+
+" horizontal limit (ie. colored border, text width)
+" TODO toggle textwidth
+set colorcolumn=81 " make this 81, shouldn't hit it
 
 " fix normal keys, and lock mouse
 set backspace=indent,eol,start
@@ -60,11 +72,12 @@ set splitright
 set pastetoggle=<leader>p
 nnoremap ; :
 vnoremap ; :
-nnoremap j gj
-nnoremap k gk
-nnoremap ^ g^
-nnoremap $ g$
-nnoremap 0 g0
+nnoremap <C-j> gj
+nnoremap <C-k> gk
+nnoremap <C-^> g^
+nnoremap <C-$> g$
+nnoremap <C-0> g0
+nnoremap <BAR> :set cursorcolumn!<BAR>set cursorline!<CR>
 
 if bufwinnr(1)
   " pane resize vertically = -
@@ -75,7 +88,7 @@ if bufwinnr(1)
   map _ 5<c-w>-
 endif
 
-" tab stops and modeline
+" tab stops defaults and modeline
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -145,14 +158,14 @@ endif
 "--------------------------------- PLUGIN -------------------------------------"
 
 
-" Emmet
-" @see https://github.com/mattn/emmet-vim
+" emmet
+" @link https://github.com/mattn/emmet-vim
 "   tab to expand
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 
-" Exchange
-" @see https://github.com/tommcdo/vim-exchange
+" exchange
+" @link https://github.com/tommcdo/vim-exchange
 let g:exchange_no_mappings=1
 nmap cx <Plug>(Exchange)
 vmap X <Plug>(Exchange)
@@ -160,30 +173,40 @@ nmap cxc <Plug>(ExchangeClear)
 nmap cxx <Plug>(ExchangeLine)
 
 
-" Ctrlp
-" @see https://github.com/ctrlpvim/ctrlp.vim
+" ctrlp
+" @link https://github.com/ctrlpvim/ctrlp.vim
 let g:ctrlp_max_files = 0
 let g:ctrlp_working_path_mode = 0
 set wildignore+=*/vendors/**
 set wildignore+=*/node_modules/**
 set wildignore+=*/bower_components/**
 
-" Gundo
-" @see https://github.com/sjl/gundo.vim
-let g:gundo_right=1
-let g:gundo_close_on_revert = 1
-let g:gundo_preview_height=25
-nnoremap <leader>u :GundoToggle<cr>
+" gundo
+" @link https://github.com/sjl/gundo.vim
+" let g:gundo_right=1
+" let g:gundo_close_on_revert = 1
+" let g:gundo_preview_height=25
+" nnoremap <leader>u :GundoToggle<cr>
 
 
-" Indent line
-" @see https://github.com/Yggdroot/indentLine
+" indent line
+" @link https://github.com/Yggdroot/indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
 
 
-" Light line
-" @see https://github.com/itchyny/lightline.vim
+" jsbeautify
+" @link https://github.com/maksimr/vim-jsbeautify
+" NOTE it needs deps https://github.com/maksimr/vim-jsbeautify#dependencies
+autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <leader>f :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
+autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
+
+
+" light line
+" @link https://github.com/itchyny/lightline.vim
 set laststatus=2
 let g:lightline = {
 \ 'colorscheme': 'wombat',
@@ -236,8 +259,8 @@ function! LightlineFilename()
 endfunction
 
 
-" Nerdtree
-" @see https://github.com/scrooloose/nerdtree
+" nerdtree
+" @link https://github.com/scrooloose/nerdtree
 "   Ctrl + N to toggle
 "   and show-on folder open
 autocmd StdinReadPre * let s:std_in=1
@@ -248,5 +271,5 @@ map <C-n> :NERDTreeToggle<CR>
 "--------------------------------- EXTRA -------------------------------------"
 
 
-" Load local vimrc, if any
+" load local vimrc, if any
 silent! source ~/.vimrc.local

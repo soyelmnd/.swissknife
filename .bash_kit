@@ -11,6 +11,7 @@ alias ll="ls -l"
 alias mkdir="mkdir -pv"
 alias rm="rm -rf"
 alias tmux="tmux -2"
+alias grep="grep --color"
 
 # brew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
