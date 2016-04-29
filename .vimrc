@@ -23,7 +23,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'groenewege/vim-less'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
@@ -50,8 +49,8 @@ colorscheme elflord
 " numbering, rulers and highlight
 set relativenumber
 set number
-set cursorline
-set cursorcolumn
+set nocursorline
+set nocursorcolumn
 highlight CursorColumn ctermbg=8
 highlight ColorColumn ctermbg=7
 highlight Visual ctermbg=255 ctermfg=16
@@ -193,16 +192,6 @@ set wildignore+=*/bower_components/**
 " @link https://github.com/Yggdroot/indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
-
-
-" jsbeautify
-" @link https://github.com/maksimr/vim-jsbeautify
-" NOTE it needs deps https://github.com/maksimr/vim-jsbeautify#dependencies
-autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
-autocmd FileType json vnoremap <buffer> <leader>f :call RangeJsonBeautify()<cr>
-autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
-autocmd FileType html vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
-autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
 
 
 " light line

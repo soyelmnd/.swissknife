@@ -17,6 +17,7 @@ alias grep="grep --color"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # python & virtualenv
+# require virtualenvwrapper
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
 alias venv=". /usr/local/bin/virtualenvwrapper.sh && workon \"$1\""

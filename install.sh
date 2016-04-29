@@ -22,6 +22,7 @@ fi
 vim +PluginInstall +qall
 
 # neovim config linking
+# require neovim to be preinstalled
 if hash nvim 2>/dev/null; then
   echo -e "\n\033[32mLinking neovim\033[m";
   mkdir -p ~/.config/nvim
@@ -43,6 +44,7 @@ fi
 
 # bash config
 echo -e "\n\033[32mConfiguring bash\033[m";
+touch $HOME/.bash_profile
 if grep -Fxq ".bash_kit" $HOME/.bash_profile; then
   echo ".bash_kit already included"
 else

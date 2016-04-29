@@ -5,4 +5,7 @@ Just as simple as
 git clone https://github.com/soyelmnd/.swissknife.git $HOME/.swissknife && $HOME/.swissknife/install.sh
 ```
 
-Screenshots and detailed guide are to be updated :-) Thanks.
+![vim](screenshots/vim.png)
+![shell](screenshots/shell.png)
+
+More screenshots and detailed guide are to be updated :-) Thanks.

@@ -1,6 +1,8 @@
 [user]
+  # to be customized
   email = minhnd.it@gmail.com
   name = soyelmnd
+  signingkey = D3A8119A
 
 [alias]
   a = add
