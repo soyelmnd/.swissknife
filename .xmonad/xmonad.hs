@@ -58,7 +58,7 @@ main = do
         { ppOutput = hPutStrLn xmproc
         , ppTitle = xmobarColor myPrimaryColor "" . shorten 50
         }
-        >> updatePointer (Relative 0.5 0.5)
+        >> updatePointer (0.5, 0.5) (1, 1)
 
     , modMask = myModMask
     , terminal = myTerminal
