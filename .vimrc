@@ -106,9 +106,11 @@ set smartcase
 set ignorecase
 map <space> :noh<cr>
 
-" show hidden chars
+" show hidden chars (and dim the tab a bit)
 set listchars=tab:>-,trail:.
 set list
+nmap <leader>l :set list!<CR>
+highlight SpecialKey ctermfg=234
 
 " text format
 set wrap
