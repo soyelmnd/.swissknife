@@ -14,6 +14,7 @@
   d = diff
   f = fetch -p
   l = log --oneline
+  ll = log --format=\"%C(auto)%h%C(reset) %s %C(yellow)- %an, %ad%C(reset) %C(dim green)%G?%C(reset)\" --date=relative
   m = merge
   p = push
   rb = rebase
