@@ -13,18 +13,19 @@
   cp = cherry-pick
   d = diff
   f = fetch -p
-  l = log --oneline
-  ll = log --format=\"%C(auto)%h%C(reset) %s %C(yellow)- %an, %ad%C(reset) %C(dim green)%G?%C(reset)\" --date=relative
+  l = log --format=\"%C(auto)%h%C(reset) %s %C(yellow)- %an, %ad%C(reset) %C(dim green)%G?%C(reset)\" --date=relative
   m = merge
   p = push
   rb = rebase
   rl = reflog
   s = status -sb -unormal
+  sh = stash
   v = log --graph --all --format=\"%C(auto)%h%C(reset) %C(auto)%d%C(reset) %s %C(yellow)- %an, %ad%C(reset) %C(dim green)%G?%C(reset)\" --date=relative
   vv = log --graph --all --format=\"%C(auto)%h%C(reset) %C(auto)%d%C(reset) %s %C(dim cyan)- %an, %ad%C(reset)%n         %C(dim)author  :%C(reset) %C(yellow)%aN <%aE>.%C(reset) %C(cyan)%aD%C(reset)%n         %C(dim)commiter:%C(reset) %C(yellow)%cN <%cE>.%C(reset) %C(cyan)%cD%C(reset)%n         %C(dim)signing :%C(reset) %C(bold green)%G?.%C(reset) %C(yellow)%GS%C(reset) %C(dim cyan)%GK%C(reset)\" --date=relative
 
 [core]
   editor = vim
+  autocrlf = input
 
 [credential]
   helper = cache --timeout=3600
