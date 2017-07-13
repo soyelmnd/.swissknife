@@ -33,6 +33,7 @@ Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'Yggdroot/indentLine'
 
 
@@ -104,7 +105,9 @@ set hlsearch
 set modifiable
 set smartcase
 set ignorecase
-map <space> :noh<cr>
+
+" space to reset highlighting
+map <space> :noh \| :SyntasticReset<cr>
 
 " show hidden chars (and dim the tab a bit)
 set listchars=tab:>-,trail:.
@@ -261,6 +264,20 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
+
+" syntastic
+" @link https://github.com/vim-syntastic/syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" NOTE: this requires global eslint CLI
+let g:syntastic_javascript_checkers = ['eslint']
 
 "--------------------------------- EXTRA -------------------------------------"
 
