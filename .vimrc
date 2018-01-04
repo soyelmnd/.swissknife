@@ -16,7 +16,6 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ap/vim-css-color'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'godlygeek/tabular'
@@ -30,7 +29,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tmhedberg/matchit'
 Plugin 'tommcdo/vim-exchange'
-Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-syntastic/syntastic'
@@ -106,7 +104,7 @@ set modifiable
 set smartcase
 set ignorecase
 
-" space to reset highlighting
+" space to clear highlighting
 map <space> :noh \| :SyntasticReset<cr>
 
 " show hidden chars (and dim the tab a bit)
@@ -271,13 +269,17 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" NOTE: this requires global eslint CLI
+" NOTE: this requires global eslint CLI, see http://eslint.org/
 let g:syntastic_javascript_checkers = ['eslint']
+
+noremap <leader><Space> :SyntasticCheck<cr>
+
 
 "--------------------------------- EXTRA -------------------------------------"
 
