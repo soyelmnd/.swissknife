@@ -31,6 +31,7 @@ Plugin 'tmhedberg/matchit'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Yggdroot/indentLine'
 
