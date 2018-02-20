@@ -52,3 +52,7 @@ else
   echo source \$HOME/.bash_kit >> $HOME/.bash_profile
 fi
 touch ~/.hushlogin
+
+# ideavim in Intellij IDEA config linking
+# see https://github.com/JetBrains/ideavim
+ln -s $HOME/.vim ~/.ideavimrc
