@@ -79,7 +79,6 @@ nnoremap <C-^> g^
 nnoremap <C-$> g$
 nnoremap <C-0> g0
 nnoremap <BAR> :set cursorcolumn!<BAR>set cursorline!<CR>
-noremap / /\v
 
 if bufwinnr(1)
   " pane resize vertically = -
