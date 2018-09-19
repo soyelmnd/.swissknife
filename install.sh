@@ -30,6 +30,10 @@ if hash nvim 2>/dev/null; then
   ln -s $HOME/.vim ~/.config/nvim/
 fi
 
+# ideavim in Intellij IDEA config linking
+# see https://github.com/JetBrains/ideavim
+ln -sf $DIR/.ideavimrc $HOME/;
+
 # terminal patched font
 echo -e "\n\033[32mInstalling powerline patched fonts\033[m";
 git clone https://github.com/powerline/fonts.git $HOME/powerline-fonts;
@@ -52,7 +56,3 @@ else
   echo source \$HOME/.bash_kit >> $HOME/.bash_profile
 fi
 touch ~/.hushlogin
-
-# ideavim in Intellij IDEA config linking
-# see https://github.com/JetBrains/ideavim
-ln -s $HOME/.vim ~/.ideavimrc
