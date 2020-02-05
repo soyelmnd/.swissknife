@@ -1,4 +1,8 @@
 source ./.vimrc
 
-set surround
+set commentary
+set easymotion
 set multiple-cursors
+set surround
+
+set rnu
