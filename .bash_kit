@@ -1,5 +1,10 @@
 # macos terminal config
-export PS1="\[\033[38;5;87m\]\w\[\033[m\] \$ "
+if [ -n "$ZSH_VERSION" ]; then
+  export PS1="%B%F{green}%~%f%b %# "
+  export RPROMPT="%*"
+else
+  export PS1="\[\033[38;5;87m\]\w\[\033[m\] \$ "
+fi
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
@@ -20,9 +25,10 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # python & virtualenv
 # require virtualenvwrapper
-export PATH=/usr/local/share/python:$PATH
-export WORKON_HOME=$HOME/.virtualenvs
-alias venv=". /usr/local/bin/virtualenvwrapper.sh && workon \"$1\""
+# @deprecated, long time no use venv
+# export PATH=/usr/local/share/python:$PATH
+# export WORKON_HOME=$HOME/.virtualenvs
+# alias venv=". /usr/local/bin/virtualenvwrapper.sh && workon \"$1\""
 
 export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
@@ -37,9 +43,23 @@ export LC_ALL=
 set -o vi
 
 # history config
-export HISTTIMEFORMAT="[%F %T] "
-export HISTFILESIZE=
-export HISTSIZE=
+if [ -n "$ZSH_VERSION" ]; then
+  export HISTSIZE=999999999
+  export SAVEHIST=$HISTSIZE
+  setopt BANG_HIST              # Treat the '!' character specially during expansion.
+  setopt EXTENDED_HISTORY       # Write the history file in the ":start:elapsed;command" format.
+  setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
+  setopt SHARE_HISTORY          # Share history between all sessions.
+  setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
+  setopt HIST_IGNORE_DUPS       # Don't record an entry that was just recorded again.
+  setopt HIST_IGNORE_ALL_DUPS   # Delete old recorded entry if new entry is a duplicate.
+  setopt HIST_FIND_NO_DUPS      # Do not display a line previously found.
+  setopt HIST_IGNORE_SPACE      # Don't record an entry starting with a space.
+  setopt HIST_SAVE_NO_DUPS      # Don't write duplicate entries in the history file.
+  setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry.
+  setopt HIST_VERIFY            # Don't execute immediately upon history expansion.
+  setopt HIST_BEEP              # Beep when accessing nonexistent history.
+fi
 
 # # tmux, auto launch the instance
 # # @deprecated, switching to terminal in neovim
