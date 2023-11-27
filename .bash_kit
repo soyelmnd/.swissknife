@@ -3,7 +3,12 @@ if [ -n "$ZSH_VERSION" ]; then
   export PS1="%B%F{green}%~%f%b %# "
   export RPROMPT="%*"
 else
-  export PS1="\e[0;36m┌──(\e[1;34m\u@\h\e[0;36m)-[\e[m\w\e[0;36m] \e[2;30m\D{%c}\e[0;36m\n└─\e[1;34m\$\e[m "
+  COLOR_LOW='\[\033[00;36m\]'
+  COLOR_HIGH='\[\033[01;34m\]'
+  COLOR_INVISIBLE='\[\033[02;30m\]'
+  COLOR_RESET='\[\033[0m\]'
+
+  export PS1="${COLOR_LOW}┌──(${COLOR_HIGH}\u@\h${COLOR_LOW})-[${COLOR_RESET}\w${COLOR_LOW}] ${COLOR_INVISIBLE}\D{%c}${COLOR_LOW}\n└─${COLOR_HIGH}\$${COLOR_RESET} "
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
