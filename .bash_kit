@@ -3,7 +3,7 @@ if [ -n "$ZSH_VERSION" ]; then
   export PS1="%B%F{green}%~%f%b %# "
   export RPROMPT="%*"
 else
-  export PS1="\e[0;36m┌──(\e[1;34m\u@\h\e[0;36m)-[\e[m\w\e[0;36m]\n└─\e[1;34m\$\e[m "
+  export PS1="\e[0;36m┌──(\e[1;34m\u@\h\e[0;36m)-[\e[m\w\e[0;36m] \e[2;30m\D{%c}\e[0;36m\n└─\e[1;34m\$\e[m "
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
